@@ -207,7 +207,16 @@
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">Sade ve Şeffaf Çözümler
                     </h2>
-                    <p class="text-lg text-gray-500 font-medium">İşletmenizin ihtiyacına en uygun paketi seçin.</p>
+                    <p class="text-lg text-gray-500 font-medium mb-10">İşletmenizin ihtiyacına en uygun paketi seçin.</p>
+                </div>
+
+                <!-- Pricing Toggle -->
+                <div class="flex items-center justify-center gap-4 mb-12">
+                    <span id="label-monthly" class="text-sm font-medium text-gray-500 transition-colors">Aylık</span>
+                    <button id="pricing-toggle" type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-blue-600" role="switch" aria-checked="true">
+                        <span id="pricing-toggle-dot" aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                    </button>
+                    <span id="label-annual" class="text-sm font-bold text-gray-900 transition-colors">Yıllık <span class="ml-1 text-blue-600">(%15 Tasarruf)</span></span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
@@ -220,9 +229,13 @@
                                 işletmeler için.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1">
+                            <div class="flex items-end gap-1 mb-1 pricing-annual">
                                 <span class="text-4xl font-extrabold text-gray-900">8.500₺</span>
                                 <span class="text-gray-500 font-medium pb-1">/yıllık</span>
+                            </div>
+                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
+                                <span class="text-4xl font-extrabold text-gray-900">850₺</span>
+                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
                             </div>
                             <p class="text-sm text-gray-400 font-medium">+ KDV</p>
                         </div>
@@ -311,9 +324,13 @@
                                 yerel marketler.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1">
+                            <div class="flex items-end gap-1 mb-1 pricing-annual">
                                 <span class="text-4xl font-extrabold text-gray-900">17.500₺</span>
                                 <span class="text-gray-500 font-medium pb-1">/yıllık</span>
+                            </div>
+                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
+                                <span class="text-4xl font-extrabold text-gray-900">1.650₺</span>
+                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
                             </div>
                             <p class="text-sm text-gray-400 font-medium">+ KDV</p>
                         </div>
@@ -439,9 +456,13 @@
                                 ağları için.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1">
+                            <div class="flex items-end gap-1 mb-1 pricing-annual">
                                 <span class="text-4xl font-extrabold text-gray-900">35.000₺</span>
                                 <span class="text-gray-500 font-medium pb-1">/yıllık</span>
+                            </div>
+                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
+                                <span class="text-4xl font-extrabold text-gray-900">3.500₺</span>
+                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
                             </div>
                             <p class="text-sm text-gray-400 font-medium">+ KDV'den başlayan fiyatlarla</p>
                         </div>
@@ -887,6 +908,42 @@
     </a>
 
     <script type="module" src="./src/form-handler.js"></script>
+    <script>
+        const toggle = document.getElementById('pricing-toggle');
+        const dot = document.getElementById('pricing-toggle-dot');
+        const annualPrices = document.querySelectorAll('.pricing-annual');
+        const monthlyPrices = document.querySelectorAll('.pricing-monthly');
+        const labelAnnual = document.getElementById('label-annual');
+        const labelMonthly = document.getElementById('label-monthly');
+
+        let isAnnual = true;
+
+        toggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            
+            if (isAnnual) {
+                toggle.classList.replace('bg-gray-200', 'bg-blue-600');
+                dot.classList.replace('translate-x-0', 'translate-x-5');
+                labelAnnual.classList.add('text-gray-900', 'font-bold');
+                labelAnnual.classList.remove('text-gray-500', 'font-medium');
+                labelMonthly.classList.add('text-gray-500', 'font-medium');
+                labelMonthly.classList.remove('text-gray-900', 'font-bold');
+                
+                annualPrices.forEach(el => el.classList.remove('hidden'));
+                monthlyPrices.forEach(el => el.classList.add('hidden'));
+            } else {
+                toggle.classList.replace('bg-blue-600', 'bg-gray-200');
+                dot.classList.replace('translate-x-5', 'translate-x-0');
+                labelMonthly.classList.add('text-gray-900', 'font-bold');
+                labelMonthly.classList.remove('text-gray-500', 'font-medium');
+                labelAnnual.classList.add('text-gray-500', 'font-medium');
+                labelAnnual.classList.remove('text-gray-900', 'font-bold');
+                
+                annualPrices.forEach(el => el.classList.add('hidden'));
+                monthlyPrices.forEach(el => el.classList.remove('hidden'));
+            }
+        });
+    </script>
 </body>
 
 </html>
