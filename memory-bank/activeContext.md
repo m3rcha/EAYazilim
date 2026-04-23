@@ -11,11 +11,13 @@
 - Built a React (Vite) Admin Panel with Vanilla CSS, Auth protection, forced password resets, and RBAC admin management.
 - Debugged Supabase RLS loop issue and login routing loop.
 - Added `vercel.json` to the `admin-panel` for SPA routing support.
-- Provided final Vercel deployment instructions to the user.
+- Discussed Git architecture strategies (Submodules vs Subtree) for extracting `admin-panel` into a separate repository.
+- Successfully deployed `admin-panel` to Vercel.
+- Resolved and deployed Supabase Edge Function (`create-admin`) to fix admin creation functionality in production.
 
 ## Next Steps
-- User will execute Vercel deployment and connect the `admin.eayazilim.tr` domain.
-- User will deploy the Supabase Edge Function (`supabase-edge-function.ts`).
+- Verify domain connection (`admin.eayazilim.tr`) to Vercel.
+- Monitor production environment for any issues.
 
 ## Active Decisions and Considerations
 - Using a static HTML approach for the main marketing site for optimal performance.
