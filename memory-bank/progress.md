@@ -12,8 +12,8 @@
 - Phase 3: Admin Management & RBAC system for the super-admin `ege.ozten` with Edge Function integration is complete.
 
 ## What's Left to Build
-- Final deployment of the Admin Panel to production.
-- Deployment of the Supabase Edge Function to securely handle user creation.
+- Final execution of Vercel deployment for the Admin Panel (`admin.eayazilim.tr`).
+- Final execution of Supabase CLI deployment for the Edge Function.
 
 ## Current Status
 - The main website is in a production-ready static state with full form backend integration.

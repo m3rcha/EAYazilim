@@ -10,10 +10,12 @@
 - Integrated `form-handler.js` to securely send contact forms directly to Supabase.
 - Built a React (Vite) Admin Panel with Vanilla CSS, Auth protection, forced password resets, and RBAC admin management.
 - Debugged Supabase RLS loop issue and login routing loop.
+- Added `vercel.json` to the `admin-panel` for SPA routing support.
+- Provided final Vercel deployment instructions to the user.
 
 ## Next Steps
-- Deploy the Supabase Edge Function (`supabase-edge-function.ts`).
-- Build and deploy the React Admin Panel to `admin.eayazilim.tr`.
+- User will execute Vercel deployment and connect the `admin.eayazilim.tr` domain.
+- User will deploy the Supabase Edge Function (`supabase-edge-function.ts`).
 
 ## Active Decisions and Considerations
 - Using a static HTML approach for the main marketing site for optimal performance.

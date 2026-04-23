@@ -21,3 +21,4 @@
 - Uses `react-router-dom` with robust route protection based on `supabase.auth` sessions.
 - Security constraints heavily shape the architecture: it uses Supabase Edge Functions (`supabase-edge-function.ts`) to execute administrative tasks (like creating users) to prevent exposing the highly sensitive `service_role` key on the client side.
 - Supabase Row Level Security (RLS) acts as the primary defense against unauthorized data access.
+- Deployment architecture is optimized for **Vercel**, including a `vercel.json` rewrite rule (`"source": "/(.*)", "destination": "/index.html"`) to natively support React Router's client-side routing and prevent 404s on page refresh.
