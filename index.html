@@ -207,16 +207,21 @@
                 <div class="text-center mb-16">
                     <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-4">Sade ve Şeffaf Çözümler
                     </h2>
-                    <p class="text-lg text-gray-500 font-medium mb-10">İşletmenizin ihtiyacına en uygun paketi seçin.</p>
-                </div>
+                    <p class="text-lg text-gray-500 font-medium">İşletmenizin ihtiyacına en uygun paketi seçin.</p>
 
-                <!-- Pricing Toggle -->
-                <div class="flex items-center justify-center gap-4 mb-12">
-                    <span id="label-monthly" class="text-sm font-medium text-gray-500 transition-colors">Aylık</span>
-                    <button id="pricing-toggle" type="button" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-blue-600" role="switch" aria-checked="true">
-                        <span id="pricing-toggle-dot" aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                    </button>
-                    <span id="label-annual" class="text-sm font-bold text-gray-900 transition-colors">Yıllık <span class="ml-1 text-blue-600">(%15 Tasarruf)</span></span>
+                    <!-- Pricing Toggle -->
+                    <div class="flex items-center justify-center gap-4 mt-8">
+                        <span id="label-monthly" class="text-sm font-medium text-gray-400 transition-colors duration-300">Aylık</span>
+                        <button id="pricing-toggle" type="button" aria-label="Fiyatlandırma periyodunu değiştir"
+                            class="relative inline-flex h-8 w-[3.75rem] items-center rounded-full bg-gradient-to-r from-blue-500 to-blue-700 shadow-inner transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                            <span id="toggle-knob"
+                                class="inline-block h-6 w-6 transform rounded-full bg-white shadow-md transition-transform duration-300 translate-x-[1.875rem]"></span>
+                        </button>
+                        <div class="flex items-center gap-2">
+                            <span id="label-annual" class="text-sm font-bold text-gray-900 transition-colors duration-300">Yıllık</span>
+                            <span class="inline-flex items-center rounded-full bg-green-50 px-2.5 py-0.5 text-xs font-bold text-green-700 border border-green-200">Tasarruf Edin</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
@@ -229,13 +234,9 @@
                                 işletmeler için.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1 pricing-annual">
-                                <span class="text-4xl font-extrabold text-gray-900">8.500₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/yıllık</span>
-                            </div>
-                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
-                                <span class="text-4xl font-extrabold text-gray-900">850₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
+                            <div class="flex items-end gap-1 mb-1">
+                                <span class="text-4xl font-extrabold text-gray-900 price-amount" data-annual="8.500₺" data-monthly="850₺">8.500₺</span>
+                                <span class="text-gray-500 font-medium pb-1 price-period">/yıllık</span>
                             </div>
                             <p class="text-sm text-gray-400 font-medium">+ KDV</p>
                         </div>
@@ -324,13 +325,9 @@
                                 yerel marketler.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1 pricing-annual">
-                                <span class="text-4xl font-extrabold text-gray-900">17.500₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/yıllık</span>
-                            </div>
-                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
-                                <span class="text-4xl font-extrabold text-gray-900">1.650₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
+                            <div class="flex items-end gap-1 mb-1">
+                                <span class="text-4xl font-extrabold text-gray-900 price-amount" data-annual="17.500₺" data-monthly="1.750₺">17.500₺</span>
+                                <span class="text-gray-500 font-medium pb-1 price-period">/yıllık</span>
                             </div>
                             <p class="text-sm text-gray-400 font-medium">+ KDV</p>
                         </div>
@@ -456,15 +453,11 @@
                                 ağları için.</p>
                         </div>
                         <div class="mb-8">
-                            <div class="flex items-end gap-1 mb-1 pricing-annual">
-                                <span class="text-4xl font-extrabold text-gray-900">35.000₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/yıllık</span>
+                            <div class="flex items-end gap-1 mb-1">
+                                <span class="text-4xl font-extrabold text-gray-900 price-amount" data-annual="35.000₺" data-monthly="3.500₺">35.000₺</span>
+                                <span class="text-gray-500 font-medium pb-1 price-period">/yıllık</span>
                             </div>
-                            <div class="flex items-end gap-1 mb-1 pricing-monthly hidden">
-                                <span class="text-4xl font-extrabold text-gray-900">3.500₺</span>
-                                <span class="text-gray-500 font-medium pb-1">/aylık</span>
-                            </div>
-                            <p class="text-sm text-gray-400 font-medium">+ KDV'den başlayan fiyatlarla</p>
+                            <p class="text-sm text-gray-400 font-medium price-subtext" data-annual="+ KDV'den başlayan fiyatlarla" data-monthly="+ KDV'den başlayan fiyatlarla">+ KDV'den başlayan fiyatlarla</p>
                         </div>
                         <div class="mb-10">
                             <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4">Paket İçeriği</p>
@@ -908,41 +901,66 @@
     </a>
 
     <script type="module" src="./src/form-handler.js"></script>
+
+    <!-- Pricing Toggle Script -->
     <script>
-        const toggle = document.getElementById('pricing-toggle');
-        const dot = document.getElementById('pricing-toggle-dot');
-        const annualPrices = document.querySelectorAll('.pricing-annual');
-        const monthlyPrices = document.querySelectorAll('.pricing-monthly');
-        const labelAnnual = document.getElementById('label-annual');
-        const labelMonthly = document.getElementById('label-monthly');
+        (function () {
+            const toggle = document.getElementById('pricing-toggle');
+            const knob = document.getElementById('toggle-knob');
+            const labelMonthly = document.getElementById('label-monthly');
+            const labelAnnual = document.getElementById('label-annual');
+            const priceAmounts = document.querySelectorAll('.price-amount');
+            const pricePeriods = document.querySelectorAll('.price-period');
+            let isAnnual = true;
 
-        let isAnnual = true;
+            toggle.addEventListener('click', function () {
+                isAnnual = !isAnnual;
 
-        toggle.addEventListener('click', () => {
-            isAnnual = !isAnnual;
-            
-            if (isAnnual) {
-                toggle.classList.replace('bg-gray-200', 'bg-blue-600');
-                dot.classList.replace('translate-x-0', 'translate-x-5');
-                labelAnnual.classList.add('text-gray-900', 'font-bold');
-                labelAnnual.classList.remove('text-gray-500', 'font-medium');
-                labelMonthly.classList.add('text-gray-500', 'font-medium');
-                labelMonthly.classList.remove('text-gray-900', 'font-bold');
-                
-                annualPrices.forEach(el => el.classList.remove('hidden'));
-                monthlyPrices.forEach(el => el.classList.add('hidden'));
-            } else {
-                toggle.classList.replace('bg-blue-600', 'bg-gray-200');
-                dot.classList.replace('translate-x-5', 'translate-x-0');
-                labelMonthly.classList.add('text-gray-900', 'font-bold');
-                labelMonthly.classList.remove('text-gray-500', 'font-medium');
-                labelAnnual.classList.add('text-gray-500', 'font-medium');
-                labelAnnual.classList.remove('text-gray-900', 'font-bold');
-                
-                annualPrices.forEach(el => el.classList.add('hidden'));
-                monthlyPrices.forEach(el => el.classList.remove('hidden'));
-            }
-        });
+                // Toggle knob position
+                if (isAnnual) {
+                    knob.style.transform = 'translateX(1.875rem)';
+                    toggle.className = toggle.className.replace('bg-gray-300', 'bg-gradient-to-r from-blue-500 to-blue-700');
+                    if (!toggle.className.includes('bg-gradient-to-r')) {
+                        toggle.classList.add('bg-gradient-to-r', 'from-blue-500', 'to-blue-700');
+                    }
+                } else {
+                    knob.style.transform = 'translateX(0.25rem)';
+                    toggle.classList.remove('bg-gradient-to-r', 'from-blue-500', 'to-blue-700');
+                    toggle.classList.add('bg-gray-300');
+                }
+
+                // Toggle label styles
+                labelAnnual.className = isAnnual
+                    ? 'text-sm font-bold text-gray-900 transition-colors duration-300'
+                    : 'text-sm font-medium text-gray-400 transition-colors duration-300';
+                labelMonthly.className = isAnnual
+                    ? 'text-sm font-medium text-gray-400 transition-colors duration-300'
+                    : 'text-sm font-bold text-gray-900 transition-colors duration-300';
+
+                // Update prices with animation
+                const period = isAnnual ? 'annual' : 'monthly';
+                const periodLabel = isAnnual ? '/yıllık' : '/aylık';
+
+                priceAmounts.forEach(function (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(4px)';
+                    setTimeout(function () {
+                        el.textContent = el.dataset[period];
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 150);
+                });
+
+                pricePeriods.forEach(function (el) {
+                    el.textContent = periodLabel;
+                });
+            });
+
+            // Add transition styles to price amounts
+            priceAmounts.forEach(function (el) {
+                el.style.transition = 'opacity 0.15s ease, transform 0.15s ease';
+            });
+        })();
     </script>
 </body>
 

@@ -5,6 +5,8 @@
 - All legal documentation pages are created and styled (`gizlilik-politikasi.html`, `iade-politikasi.html`, `kullanim-kosullari.html`, `kvkk-aydinlatma-metni.html`).
 - Tailwind CSS styling is fully configured and compiled successfully.
 - Contact information reflects the latest updates (+90 541 554 75 47, Manisa/Şehzadeler).
+- Landing page content is optimized for efficiency and digital transformation messaging.
+- Pricing structure is updated to an annual subscription model (+VAT).
 
 ## Completed Phases
 - Phase 1: Secure Form Submission endpoint & Database integration (Supabase/Serverless) is fully functional.

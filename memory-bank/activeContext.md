@@ -14,6 +14,9 @@
 - Discussed Git architecture strategies (Submodules vs Subtree) for extracting `admin-panel` into a separate repository.
 - Successfully deployed `admin-panel` to Vercel.
 - Resolved and deployed Supabase Edge Function (`create-admin`) to fix admin creation functionality in production.
+- Updated "Neden EA Yazılım?" section with focus on offline operation, modern UI, performance, and support.
+- Transformed "Sektörel Çözümler" into "Verimlilik Odaklı Dijital Dönüşüm" focusing on cost management, speed, and reporting.
+- Switched pricing model from one-time fees to annual rates + VAT, with improved layout.
 
 ## Next Steps
 - Verify domain connection (`admin.eayazilim.tr`) to Vercel.
