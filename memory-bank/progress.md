@@ -35,13 +35,17 @@
   - Fixed `MODULE_NOT_FOUND` in `dashboard-login.js` due to an incorrect relative import path.
   - Fixed a `SyntaxError` in `apiKey.js` middleware caused by a malformed JSDoc comment.
   - These server crash fixes resolved the misleading "failed to fetch" CORS errors on preflight `OPTIONS` requests.
-  - Re-configured `vercel.json` CORS to allow `*` to ensure local `file:///` demo testing functions correctly.
+  - Adjusted `vercel.json` CORS to allow `*` to ensure local `file:///` demo testing functions correctly.
+- Phase 14 (Transaction Integrity):
+  - Removed time-based duplicate detection (60s window).
+  - Re-purposed existing `id` column in `transactions` table from `UUID` to `TEXT`.
+  - Implemented mandatory `id` field for `POST /api/transaction` to act as the client-side unique identifier.
+  - Updated `demo-pos.html` to generate unique `id` values for testing.
 
 ## What's Left to Build
-- Deploy updated `pos-api/`, `pos-dashboard/`, and `admin-panel/` to Vercel.
-- Run SQL migration: `ALTER TABLE public.admin_roles ADD COLUMN email TEXT;` and `UPDATE public.admin_roles SET email = 'your@email.com' WHERE role = 'super_admin';`
 - Implement email automation for "Send Monthly Statement" feature (Resend or Mailgun).
 - Implement Supabase JWT/Auth for dashboard endpoints (future security enhancement).
+- Implement rate limiting on API endpoints to prevent abuse.
 
 ## Current Status
 - All three production sites are fully operational and branded.

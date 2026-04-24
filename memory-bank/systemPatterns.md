@@ -26,12 +26,13 @@
 ## POS Dashboard API Architecture
 - Built as **Vercel Serverless Functions** inside the `pos-api/` directory, deployed as a separate Vercel project.
 - Uses **Supabase service_role key** (server-side only) to bypass RLS for efficient aggregation queries.
-- Two endpoints: `POST /api/transaction` (with Zod validation + 60-second duplicate detection) and `GET /api/dashboard-stats/[businessId]` (parallel aggregation queries with tier-based restrictions).
+- Two endpoints: `POST /api/transaction` (with Zod validation + ID-based duplicate detection) and `GET /api/dashboard-stats/[businessId]` (parallel aggregation queries with tier-based restrictions).
 - **Middleware chain**: `withApiKey → withLicenseCheck → handler`. API key validated first (no DB call), then license status checked (1 DB query), then handler executes.
 - **Tiered Licensing**: `businesses` table has `is_licensed`, `license_tier` (`basic`/`pro`/`enterprise`), and `license_expires_at`. Middleware returns 403 for deactivated or expired licenses.
 - **Tier-based dashboard restrictions**: `basic` = daily stats + 5 recent, `pro` = daily + monthly + 10 recent, `enterprise` = full data including average ticket size.
 - **Centralized logging**: Winston logger with custom Supabase transport writes errors/warnings to `system_logs` table.
 - **Input validation**: Zod schema validation on `/api/transaction` with `z.coerce.number()` for .NET client compatibility.
-- Security MVP: Dashboard access controlled via complex, non-predictable `business_id` codes (acts as a secret token). JWT auth planned for future.
-- Businesses are managed via the Admin Panel (`/businesses` page) with auto-generated secure IDs.
-- `transactions` table has composite indexes for fast filtering by `business_id + created_at` and duplicate detection.
+- **Duplicate Detection**: `POST /api/transaction` uses a client-provided `id` to prevent duplicate submissions. This ID maps directly to the primary key of the `transactions` table.
+- **Security MVP**: Dashboard access controlled via complex, 12-character `business_id` codes (format: `XXXX-XXXX-XXXX`) and 6-digit hashed PINs.
+- Businesses are managed via the Admin Panel (`/businesses` page) with auto-generated secure IDs and PINs.
+- `transactions` table uses the client-provided `id` (as `TEXT`) as its primary key to naturally enforce data integrity.

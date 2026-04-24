@@ -35,13 +35,24 @@
 - Extended Supabase schema with `businesses` and `transactions` tables (Phase 4).
 - Fixed multiple POS API bugs (`dashboard-login.js` import paths, `apiKey.js` syntax errors) that were causing 500 errors disguised as CORS errors.
 - Adjusted `pos-api` CORS settings to allow `*` for local `demo-pos.html` testing.
+- **Secure Identification (completed):**
+  - Implemented 12-character cryptographically secure Business IDs (`XXXX-XXXX-XXXX`).
+  - Implemented 6-digit Dashboard PINs for business owner login.
+  - Integrated `bcryptjs` for hashing PINs before storing them in the database.
+- **Transaction Integrity (completed):**
+  - Shifted from 60-second time-based duplicate detection to **Primary Key (id)** based detection.
+  - Re-purposed the existing `id` column (converted to `TEXT`) to store client-provided unique transaction IDs.
+  - This ensures global uniqueness and prevents duplicate submissions without needing a separate column.
 
 ## Next Steps
-- **Admin Panel Reporting:** 
-  - Add `jspdf` and `jspdf-autotable` to `admin-panel`.
-  - Add "Download 30-Day PDF" and "Send Email Statement (Placeholder)" buttons to the BusinessManagement page.
-- Deploy updated `pos-api/`, `pos-dashboard/`, and `admin-panel/` to Vercel.
-- Implement Supabase JWT/Auth for dashboard endpoints (future security enhancement).
+- **Email Automation:** 
+  - Integrate a service like Resend or Mailgun to send monthly statements.
+  - Replace the placeholder button in the Admin Panel with actual functionality.
+- **Security Enhancements:**
+  - Implement Supabase JWT/Auth for dashboard endpoints to replace the current ID+PIN mechanism for higher security.
+  - Implement rate limiting on the API endpoints.
+- **Maintenance:**
+  - Run SQL migration for the `email` column in `admin_roles` on the production database.
 
 ## Active Decisions and Considerations
 - Using a static HTML approach for the main marketing site for optimal performance.

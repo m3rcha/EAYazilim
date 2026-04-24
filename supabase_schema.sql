@@ -126,7 +126,7 @@ CREATE POLICY "Allow service_role full access to businesses"
 
 -- 4. Create Transactions Table (POS Transaction Log)
 CREATE TABLE public.transactions (
-    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    id TEXT PRIMARY KEY, -- Unique ID provided by the POS client
     business_id TEXT NOT NULL REFERENCES public.businesses(business_id) ON DELETE CASCADE,
     device_id TEXT NOT NULL,
     amount NUMERIC(12, 2) NOT NULL CHECK (amount >= 0),
@@ -156,10 +156,6 @@ CREATE POLICY "Allow authenticated read transactions"
 CREATE INDEX idx_transactions_business_id ON public.transactions(business_id);
 CREATE INDEX idx_transactions_created_at ON public.transactions(created_at DESC);
 CREATE INDEX idx_transactions_business_created ON public.transactions(business_id, created_at DESC);
-
--- Composite index for duplicate detection (business_id + device_id + amount + created_at)
-CREATE INDEX idx_transactions_duplicate_check 
-    ON public.transactions(business_id, device_id, amount, created_at DESC);
 
 -- =========================================================================================
 -- Seed Example Business (Optional - for testing)

@@ -27,6 +27,9 @@
 
 ## Admin Panel Dependencies (`admin-panel/package.json`)
 - `@supabase/supabase-js`: ^2.104.1
+- `bcryptjs`: ^2.4.3 (for client-side PIN hashing)
+- `jspdf`: ^3.0.0 (for client-side PDF generation)
+- `jspdf-autotable`: ^5.0.2
 - `lucide-react`: ^1.9.0
 - `react`: ^19.2.5
 - `react-router-dom`: ^7.14.2

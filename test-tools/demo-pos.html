@@ -359,7 +359,11 @@
             payBtn.disabled = true;
 
             try {
+                // Generate a random transaction ID for demo purposes
+                const txnId = 'TXN-' + Date.now() + '-' + Math.floor(Math.random() * 1000);
+
                 const payload = {
+                    id: txnId,
                     business_id: businessId,
                     device_id: deviceId,
                     amount: currentAmount,
