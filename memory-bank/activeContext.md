@@ -33,6 +33,8 @@
 - Created POS Dashboard API (`pos-api/`) as Vercel Serverless Functions.
 - Built the Business Owner Dashboard (`pos-dashboard/`) for `restoran.eayazilim.tr` with dark-mode UI and real-time stats.
 - Extended Supabase schema with `businesses` and `transactions` tables (Phase 4).
+- Fixed multiple POS API bugs (`dashboard-login.js` import paths, `apiKey.js` syntax errors) that were causing 500 errors disguised as CORS errors.
+- Adjusted `pos-api` CORS settings to allow `*` for local `demo-pos.html` testing.
 
 ## Next Steps
 - **Admin Panel Reporting:** 

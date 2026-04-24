@@ -30,6 +30,12 @@
   - Favicons updated on all three sites to use `logo-square.svg`.
   - Browser tab titles updated with proper product names.
   - POS Dashboard login logo centered and enlarged to 80px height.
+- Phase 13 (Bug Fixes & API Stabilization):
+  - Resolved Supabase schema cache issue for the new `pin_hash` column.
+  - Fixed `MODULE_NOT_FOUND` in `dashboard-login.js` due to an incorrect relative import path.
+  - Fixed a `SyntaxError` in `apiKey.js` middleware caused by a malformed JSDoc comment.
+  - These server crash fixes resolved the misleading "failed to fetch" CORS errors on preflight `OPTIONS` requests.
+  - Re-configured `vercel.json` CORS to allow `*` to ensure local `file:///` demo testing functions correctly.
 
 ## What's Left to Build
 - Deploy updated `pos-api/`, `pos-dashboard/`, and `admin-panel/` to Vercel.
