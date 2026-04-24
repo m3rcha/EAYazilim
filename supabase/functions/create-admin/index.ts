@@ -55,7 +55,7 @@ serve(async (req) => {
     const { error: roleError } = await supabaseAdmin
       .from('admin_roles')
       .insert([
-        { user_id: newUser.user.id, role: 'admin', force_password_reset: true }
+        { user_id: newUser.user.id, email: email, role: 'admin', force_password_reset: true }
       ])
 
     if (roleError) throw roleError
