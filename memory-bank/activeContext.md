@@ -1,7 +1,8 @@
 # Active Context
 
 ## Current Work Focus
-- The main website is built, and the current focus is on developing a secure, authenticated admin panel (`admin.eayazilim.tr`) to handle "Contact Us" submissions. Development is divided into 3 phases: secure backend integration, admin dashboard foundation, and super-admin RBAC capabilities.
+- Building the POS Dashboard API (`pos-api/`) for `restoran.eayazilim.tr` — a Node.js serverless backend on Vercel that provides restaurant-specific analytics (daily/monthly revenue, average ticket size, recent transactions).
+- The API uses Supabase (service_role key) as its data layer with `businesses` and `transactions` tables.
 
 ## Recent Changes
 - Updated contact and address info to '+90 541 554 75 47' and 'Manisa/Şehzadeler'.
@@ -17,10 +18,17 @@
 - Updated "Neden EA Yazılım?" section with focus on offline operation, modern UI, performance, and support.
 - Transformed "Sektörel Çözümler" into "Verimlilik Odaklı Dijital Dönüşüm" focusing on cost management, speed, and reporting.
 - Switched pricing model from one-time fees to annual rates + VAT, with improved layout.
+- Added annual/monthly pricing toggle with pill-style UI and micro-animations.
+- Updated FAQ section with 4 new professional Q&As and smooth accordion animations.
+- Created POS Dashboard API (`pos-api/`) as Vercel Serverless Functions with `POST /api/transaction` (with duplicate detection) and `GET /api/dashboard-stats/[businessId]` endpoints.
+- Extended Supabase schema with `businesses` and `transactions` tables (Phase 4).
 
 ## Next Steps
+- Deploy `pos-api/` to Vercel and configure environment variables (SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY).
+- Run the Phase 4 SQL schema in Supabase SQL Editor to create `businesses` and `transactions` tables.
+- Seed a test business and verify API endpoints with `curl`.
+- Build the frontend dashboard for `restoran.eayazilim.tr`.
 - Verify domain connection (`admin.eayazilim.tr`) to Vercel.
-- Monitor production environment for any issues.
 
 ## Active Decisions and Considerations
 - Using a static HTML approach for the main marketing site for optimal performance.

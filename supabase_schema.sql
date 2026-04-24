@@ -80,3 +80,65 @@ CREATE POLICY "Allow super_admin delete admin_roles"
 -- Note: The ege.ozten user will need to be created via the Supabase Auth UI or Admin Panel,
 -- and then manually inserted into the admin_roles table as 'super_admin' via the SQL editor 
 -- for the very first setup. We will cover this in Phase 2.
+
+
+-- =========================================================================================
+-- POS Dashboard API - Schema (Phase 4)
+-- Tables: businesses, transactions
+-- =========================================================================================
+
+-- 3. Create Businesses Table (Restaurant Registry)
+CREATE TABLE public.businesses (
+    business_id TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Enable RLS on Businesses
+ALTER TABLE public.businesses ENABLE ROW LEVEL SECURITY;
+
+-- Service role has full access (used by the API server)
+-- No public/anon access needed - all access goes through the API
+CREATE POLICY "Allow service_role full access to businesses"
+    ON public.businesses
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+
+-- 4. Create Transactions Table (POS Transaction Log)
+CREATE TABLE public.transactions (
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+    business_id TEXT NOT NULL REFERENCES public.businesses(business_id) ON DELETE CASCADE,
+    device_id TEXT NOT NULL,
+    amount NUMERIC(12, 2) NOT NULL CHECK (amount >= 0),
+    status TEXT NOT NULL DEFAULT 'completed' CHECK (status IN ('completed', 'refunded', 'cancelled')),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+);
+
+-- Enable RLS on Transactions
+ALTER TABLE public.transactions ENABLE ROW LEVEL SECURITY;
+
+-- Service role has full access (used by the API server)
+CREATE POLICY "Allow service_role full access to transactions"
+    ON public.transactions
+    FOR ALL
+    TO service_role
+    USING (true)
+    WITH CHECK (true);
+
+-- Performance Indexes
+CREATE INDEX idx_transactions_business_id ON public.transactions(business_id);
+CREATE INDEX idx_transactions_created_at ON public.transactions(created_at DESC);
+CREATE INDEX idx_transactions_business_created ON public.transactions(business_id, created_at DESC);
+
+-- Composite index for duplicate detection (business_id + device_id + amount + created_at)
+CREATE INDEX idx_transactions_duplicate_check 
+    ON public.transactions(business_id, device_id, amount, created_at DESC);
+
+-- =========================================================================================
+-- Seed Example Business (Optional - for testing)
+-- =========================================================================================
+-- INSERT INTO public.businesses (business_id, name)
+-- VALUES ('KAFE-XK7R9M', 'Test Kafe');

@@ -22,3 +22,11 @@
 - Security constraints heavily shape the architecture: it uses Supabase Edge Functions (`supabase-edge-function.ts`) to execute administrative tasks (like creating users) to prevent exposing the highly sensitive `service_role` key on the client side.
 - Supabase Row Level Security (RLS) acts as the primary defense against unauthorized data access.
 - Deployment architecture is optimized for **Vercel**, including a `vercel.json` rewrite rule (`"source": "/(.*)", "destination": "/index.html"`) to natively support React Router's client-side routing and prevent 404s on page refresh.
+
+## POS Dashboard API Architecture
+- Built as **Vercel Serverless Functions** inside the `pos-api/` directory, deployed as a separate Vercel project.
+- Uses **Supabase service_role key** (server-side only) to bypass RLS for efficient aggregation queries.
+- Two endpoints: `POST /api/transaction` (with 60-second duplicate detection) and `GET /api/dashboard-stats/[businessId]` (parallel aggregation queries).
+- Security MVP: Dashboard access controlled via complex, non-predictable `business_id` codes (acts as a secret token). JWT auth planned for Phase 2.
+- Businesses are seeded manually in Supabase; no public registration endpoint.
+- `transactions` table has composite indexes for fast filtering by `business_id + created_at` and duplicate detection.
