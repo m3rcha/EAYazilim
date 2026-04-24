@@ -16,9 +16,10 @@
 - Phase 5 (Production Upgrade): Zod validation, Winston centralized logging (`system_logs` table), Admin Business Management page, API Key middleware — all complete.
 - Phase 6 (Licensing - DB & API & Admin UI): Tiered licensing infrastructure, middleware enforcement, and admin controls are complete.
 - Phase 7 (Tiered Dashboard Analytics): Modular dashboard with Chart.js, Heatmaps, Device Performance, and Excel/PDF Export based on tier is complete.
+- Phase 8 (Admin Panel Reporting): Added 30-day transaction PDF export and monthly email statement placeholder in `BusinessManagement.jsx`.
 
 ## What's Left to Build
-- Deploy updated `pos-api/` and `pos-dashboard/` to Vercel.
+- Deploy updated `pos-api/`, `pos-dashboard/`, and `admin-panel/` to Vercel.
 - Implement Supabase JWT/Auth for dashboard endpoints (future security enhancement).
 
 ## Current Status

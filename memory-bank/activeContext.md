@@ -36,10 +36,10 @@
 - Extended Supabase schema with `businesses` and `transactions` tables (Phase 4).
 
 ## Next Steps
-- **Tiered Dashboard Implementation (3 Phases):**
-  - Phase 1: Database & API Updates (Adding mock data or new schema for products/cashiers, updating tier restrictions in API).
-  - Phase 2: POS Dashboard HTML/CSS Updates (Creating tier-specific layouts, charts, and tables).
-  - Phase 3: POS Dashboard JS Integration (Rendering correct components based on `license_tier` and resolving the 'loading' state bug for lower tiers).
+- **Admin Panel Reporting:** 
+  - Add `jspdf` and `jspdf-autotable` to `admin-panel`.
+  - Add "Download 30-Day PDF" and "Send Email Statement (Placeholder)" buttons to the BusinessManagement page.
+- Deploy updated `pos-api/`, `pos-dashboard/`, and `admin-panel/` to Vercel.
 - Implement Supabase JWT/Auth for dashboard endpoints (future security enhancement).
 
 ## Active Decisions and Considerations
