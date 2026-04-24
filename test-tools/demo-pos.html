@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -196,7 +197,7 @@
         .spinner {
             width: 20px;
             height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 1s ease-in-out infinite;
@@ -204,10 +205,13 @@
         }
 
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="pos-terminal">
@@ -215,16 +219,21 @@
             <h1>Demo POS Terminali</h1>
             <p>Sistemi test etmek için örnek işlemler gönderin</p>
         </div>
-        
+
         <div class="pos-body">
             <div class="form-group">
                 <label class="form-label">İşletme ID (Business ID)</label>
-                <input type="text" id="business-id" class="form-input" placeholder="Örn: X1Y2-Z3W4-A5B6" autocomplete="off">
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="business-id" class="form-input" placeholder="Örn: X1Y2-Z3W4-A5B6"
+                        autocomplete="off">
+                    <button onclick="checkLicense()" class="quick-btn" style="white-space: nowrap; font-size: 0.75rem;">Lisans Sorgula</button>
+                </div>
+                <div id="license-status" style="margin-top: 0.5rem; font-size: 0.75rem; display: none;"></div>
             </div>
 
             <div class="amount-display">
                 <div class="amount-value" id="display-amount">0.00 ₺</div>
-                
+
                 <div class="quick-amounts">
                     <button class="quick-btn" onclick="addAmount(50)">+50</button>
                     <button class="quick-btn" onclick="addAmount(100)">+100</button>
@@ -244,10 +253,10 @@
 
     <script>
         const API_BASE = 'https://pos-api-beige.vercel.app';
-        const API_KEY = 'f50b7ec69abf7e9fcd16b22a8afef12eb1b22e33492e03631a7b5c644cf0a617';
-        
+        const API_KEY = 'd68fa99f23662c9ea6564dff341bbdc4ff90a1714110fb4d5cce3bd402f5f76f';
+
         let currentAmount = 0;
-        
+
         // Cihaz kimliğini localStorage'da tutalım veya oluşturalım
         let deviceId = localStorage.getItem('demo_device_id');
         if (!deviceId) {
@@ -280,16 +289,53 @@
             const container = document.getElementById('status-container');
             container.textContent = message;
             container.className = 'status-message ' + (isError ? 'status-error' : 'status-success');
-            
+
             // 5 saniye sonra gizle
             setTimeout(() => {
                 container.className = 'status-message';
             }, 5000);
         }
 
+        async function checkLicense() {
+            const businessId = document.getElementById('business-id').value.trim();
+            const statusDiv = document.getElementById('license-status');
+
+            if (!businessId) {
+                showStatus('Lütfen bir İşletme ID girin.', true);
+                return;
+            }
+
+            statusDiv.style.display = 'block';
+            statusDiv.style.color = 'var(--text-muted)';
+            statusDiv.textContent = 'Sorgulanıyor...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/license?businessId=${businessId}`, {
+                    method: 'GET',
+                    headers: {
+                        'x-api-key': API_KEY
+                    }
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.business && data.business.is_licensed) {
+                    statusDiv.style.color = 'var(--success)';
+                    statusDiv.textContent = `✅ Lisans Aktif: ${data.business.name} (${data.business.license_tier})`;
+                    localStorage.setItem('demo_business_id', businessId);
+                } else {
+                    statusDiv.style.color = 'var(--danger)';
+                    statusDiv.textContent = `❌ Lisans Geçersiz: ${data.message || data.error}`;
+                }
+            } catch (err) {
+                statusDiv.style.color = 'var(--danger)';
+                statusDiv.textContent = `⚠️ Hata: ${err.message}`;
+            }
+        }
+
         async function sendTransaction() {
             const businessId = document.getElementById('business-id').value.trim();
-            
+
             if (!businessId) {
                 showStatus('Lütfen bir İşletme ID girin.', true);
                 return;
@@ -352,4 +398,5 @@
         updateDisplay();
     </script>
 </body>
+
 </html>
