@@ -91,6 +91,7 @@ CREATE POLICY "Allow super_admin delete admin_roles"
 CREATE TABLE public.businesses (
     business_id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
+    email TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
 );
 
