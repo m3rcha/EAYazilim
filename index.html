@@ -8,6 +8,28 @@
     <meta name="description"
         content="İşletmenize hız ve kolaylık katan modern POS yazılımı. Barkod sistemi ve yemek platformu entegrasyonu ile satışlarınızı artırın.">
     <link rel="stylesheet" href="./src/output.css">
+    <style>
+        /* FAQ Accordion Animation */
+        .faq-answer {
+            display: grid;
+            grid-template-rows: 0fr;
+            opacity: 0;
+            transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+        }
+        .faq-answer.is-open {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .faq-answer-inner {
+            overflow: hidden;
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+        .faq-chevron.is-rotated {
+            transform: rotate(180deg);
+        }
+    </style>
 </head>
 
 <body
@@ -629,73 +651,88 @@
 
                 <div class="space-y-4">
                     <!-- Soru 1 -->
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
-                        <details class="group">
-                            <summary
-                                class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-gray-900">
-                                <span>Kurulum süreci ne kadar sürüyor?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                        <path d="M6 9l6 6 6-6"></path>
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="text-gray-500 font-medium px-6 pb-6 pt-0 leading-relaxed">
-                                Uzaktan kurulum tercih ederseniz, aynı gün içinde tüm sistemi kurup kullanıma hazır hale
-                                getiriyoruz. Yerinde (lokal) kurulum isterseniz, ekibimiz en geç 1 hafta içinde
-                                işletmenizi bizzat ziyaret ederek her şeyi anahtar teslim hazırlıyor.
+                    <div class="faq-item bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
+                        <button type="button" class="faq-toggle flex justify-between items-center w-full font-bold cursor-pointer p-6 text-lg text-gray-900 text-left">
+                            <span>Kurulum süreci ne kadar sürer?</span>
+                            <span class="faq-chevron shrink-0 ml-4">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                <div class="text-gray-500 font-medium px-6 pb-6 leading-relaxed">
+                                    Bulut tabanlı kurulumlarımızı aynı iş günü içerisinde tamamlayarak sistemi kullanıma hazır hale getiriyoruz. Donanım entegrasyonu gerektiren projelerimizde ise, uzman teknik ekibimiz en geç 48 saat içerisinde anahtar teslim kurulum sağlamaktadır.
+                                </div>
                             </div>
-                        </details>
+                        </div>
                     </div>
 
                     <!-- Soru 2 -->
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
-                        <details class="group">
-                            <summary
-                                class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-gray-900">
-                                <span>İnternet kesilirse sistem çalışmaya devam eder mi?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                        <path d="M6 9l6 6 6-6"></path>
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="text-gray-500 font-medium px-6 pb-6 pt-0 leading-relaxed">
-                                Bulut tabanlı abonelik sistemlerinde internet bağlantısı gereklidir. Ancak "Ömür Boyu"
-                                (lokal kurulum) paketimizi seçerseniz, internetiniz kopsa dahi satışlarınız ve
-                                işlemleriniz hiçbir kesintiye uğramadan tıkır tıkır çalışmaya devam eder.
+                    <div class="faq-item bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
+                        <button type="button" class="faq-toggle flex justify-between items-center w-full font-bold cursor-pointer p-6 text-lg text-gray-900 text-left">
+                            <span>İnternet kesintilerinde sistem çalışmaya devam eder mi?</span>
+                            <span class="faq-chevron shrink-0 ml-4">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                <div class="text-gray-500 font-medium px-6 pb-6 leading-relaxed">
+                                    Evet. EA Yazılım hibrit bir mimariyle çalışır. İnternetiniz kopsa dahi yerel veritabanı altyapımız sayesinde satış süreçleriniz kesintisiz devam eder. Bağlantı sağlandığında tüm verileriniz buluta otomatik olarak senkronize edilir.
+                                </div>
                             </div>
-                        </details>
+                        </div>
                     </div>
 
                     <!-- Soru 3 -->
-                    <div
-                        class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
-                        <details class="group">
-                            <summary
-                                class="flex justify-between items-center font-bold cursor-pointer list-none p-6 text-lg text-gray-900">
-                                <span>Satış sonrası destek veriyor musunuz?</span>
-                                <span class="transition group-open:rotate-180">
-                                    <svg fill="none" height="24" shape-rendering="geometricPrecision"
-                                        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.5" viewBox="0 0 24 24" width="24">
-                                        <path d="M6 9l6 6 6-6"></path>
-                                    </svg>
-                                </span>
-                            </summary>
-                            <div class="text-gray-500 font-medium px-6 pb-6 pt-0 leading-relaxed">
-                                Kesinlikle! Biz bu yola iki ortak çıktık ve en büyük farkımız samimiyetimiz. Kurulumdan
-                                hemen sonra size doğrudan şahsi numaralarımızı bırakıyoruz. Sistemsel bir acil durum
-                                olursa, gecenin 3'ünde bile hiç çekinmeden arayabilirsiniz. İşinizi asla yarı yolda
-                                bırakmayız.
+                    <div class="faq-item bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
+                        <button type="button" class="faq-toggle flex justify-between items-center w-full font-bold cursor-pointer p-6 text-lg text-gray-900 text-left">
+                            <span>Mevcut yazarkasa (ÖKC) cihazımla entegre çalışabilir miyim?</span>
+                            <span class="faq-chevron shrink-0 ml-4">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                <div class="text-gray-500 font-medium px-6 pb-6 leading-relaxed">
+                                    <p>Sistemimiz; Beko, Hugin ve Ingenico başta olmak üzere piyasadaki lider ÖKC markalarıyla tam entegre çalışmaktadır. GMP3 protokolü desteğimiz sayesinde satış verileriniz doğrudan cihazınıza aktarılır.</p>
+                                    <p class="mt-3 text-sm text-gray-400 italic">Not: Cihaz üreticileri tarafından talep edilebilecek "GMP3 Hizmet Bedeli" veya "Lisans Ücretleri" paket fiyatlarımıza dahil değildir ve kullanıcıya aittir.</p>
+                                </div>
                             </div>
-                        </details>
+                        </div>
+                    </div>
+
+                    <!-- Soru 4 -->
+                    <div class="faq-item bg-white border border-gray-200 rounded-2xl overflow-hidden hover:border-blue-500 transition-colors">
+                        <button type="button" class="faq-toggle flex justify-between items-center w-full font-bold cursor-pointer p-6 text-lg text-gray-900 text-left">
+                            <span>Verilerimizin güvenliğini nasıl sağlıyorsunuz?</span>
+                            <span class="faq-chevron shrink-0 ml-4">
+                                <svg fill="none" height="24" shape-rendering="geometricPrecision"
+                                    stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.5" viewBox="0 0 24 24" width="24">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        <div class="faq-answer">
+                            <div class="faq-answer-inner">
+                                <div class="text-gray-500 font-medium px-6 pb-6 leading-relaxed">
+                                    Tüm işletme verileriniz, banka seviyesinde şifreleme protokolleri ile korunmaktadır. Verileriniz hem bulut üzerinde anlık olarak yedeklenir hem de yerel sunucunuzda saklanır.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -951,6 +988,24 @@
             });
 
             savingsBadge.style.transition = 'opacity 0.3s ease';
+        })();
+    </script>
+
+    <!-- FAQ Accordion Animation Script -->
+    <script>
+        (function () {
+            document.querySelectorAll('.faq-item').forEach(function (item) {
+                var btn = item.querySelector('.faq-toggle');
+                var answer = item.querySelector('.faq-answer');
+                var chevron = item.querySelector('.faq-chevron');
+                var isOpen = false;
+
+                btn.addEventListener('click', function () {
+                    isOpen = !isOpen;
+                    answer.classList.toggle('is-open', isOpen);
+                    chevron.classList.toggle('is-rotated', isOpen);
+                });
+            });
         })();
     </script>
 </body>
