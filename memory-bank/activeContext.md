@@ -12,17 +12,16 @@
   - Phase 2: Created Winston logger with custom Supabase transport (`system_logs` table)
   - Phase 3: Built Admin Business Management page (`BusinessManagement.jsx`) with secure ID generation
   - Phase 4: Added API Key middleware (`withApiKey`) protecting both endpoints
-- **Tiered Licensing System (in progress):**
-  - Phase 1 (DB): Added `is_licensed`, `license_tier`, `license_expires_at` columns to `businesses` table. Added super_admin UPDATE policy.
-  - Phase 2 (API): Created `withLicenseCheck` middleware. Chain order: `withApiKey → withLicenseCheck → handler`. Added tier-based dashboard data restrictions (basic=daily only, pro=monthly, enterprise=full). Removed inline business checks from handlers.
-- Previous: Updated contact info, legal pages, landing page design, admin panel with RBAC, POS Dashboard API and frontend.
-- Updated contact and address info to '+90 541 554 75 47' and 'Manisa/Şehzadeler'.
-- Created and linked legal pages (`kullanim-kosullari.html`, `gizlilik-politikasi.html`, `iade-politikasi.html`, `kvkk-aydinlatma-metni.html`).
-- Set up and styled the landing page using Tailwind CSS v4.
-- Integrated `form-handler.js` to securely send contact forms directly to Supabase.
-- Built a React (Vite) Admin Panel with Vanilla CSS, Auth protection, forced password resets, and RBAC admin management.
-- Debugged Supabase RLS loop issue and login routing loop.
-- Added `vercel.json` to the `admin-panel` for SPA routing support.
+- **Admin Panel Reporting (completed):**
+  - Added `jspdf` and `jspdf-autotable` to `admin-panel` for client-side PDF generation.
+  - Implemented `handleDownloadPDF` inside the "Edit Business" modal to export 30-day transaction history.
+  - Added "Aylık Ekstre Gönder" button as a placeholder for future email automation.
+  - Added RLS policy to `supabase_schema.sql` allowing `authenticated` admins to read `transactions` (fixing "0 rows" issue).
+  - Fixed ES Module import pattern for `jspdf-autotable` to resolve `autoTable is not a function`.
+- **Tiered Dashboard Implementation (completed):**
+  - Updated API to serve tiered analytics entirely in memory, removing `.limit(50)` to serve all monthly transactions for all tiers.
+  - Created modular dashboard UI that hides/shows charts, heatmaps, and device performance based on the active tier.
+  - Added frontend date/time filtering for transactions table (exclusive to Pro/Enterprise tiers).
 - Discussed Git architecture strategies (Submodules vs Subtree) for extracting `admin-panel` into a separate repository.
 - Successfully deployed `admin-panel` to Vercel.
 - Resolved and deployed Supabase Edge Function (`create-admin`) to fix admin creation functionality in production.
