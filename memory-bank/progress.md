@@ -41,7 +41,9 @@
   - Enforced use of **UUID** for the `id` column in the `transactions` table.
   - Implemented **Idempotent** success responses (`200 OK`) for duplicate `id` submissions.
   - Implemented strict UUID validation in `POST /api/transaction` via Zod (`z.string().uuid()`).
-  - Updated `demo-pos.html` to generate valid UUIDs for testing using `crypto.randomUUID()`.
+- Phase 15 (Landing Page refinement):
+  - Fixed navigation mismatch: Changed "Sektörler" label to "Çözümler" in Header and Footer.
+  - Updated primary contact email to `bilgi@eayazilim.tr`.
 
 ## What's Left to Build
 - Implement email automation for "Send Monthly Statement" feature (Resend or Mailgun).

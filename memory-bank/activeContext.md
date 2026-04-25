@@ -6,7 +6,9 @@
 - The dashboard is a client-side static application that consumes the `pos-api` analytics.
 - The API uses Supabase (service_role key) as its data layer with `businesses` and `transactions` tables.
 
-## Recent Changes
+- **Landing Page Updates (completed):**
+  - Updated navigation labels from "Sektörler" to "Çözümler" to match the "Efficiency-Focused Digital Transformation" section content.
+  - Updated contact email from `info@eayazilim.com` to `bilgi@eayazilim.tr` for consistency.
 - **POS API Production Upgrade (completed):**
   - Phase 1: Added Zod input validation to `/api/transaction`
   - Phase 2: Created Winston logger with custom Supabase transport (`system_logs` table)
