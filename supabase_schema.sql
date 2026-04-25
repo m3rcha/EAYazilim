@@ -126,7 +126,7 @@ CREATE POLICY "Allow service_role full access to businesses"
 
 -- 4. Create Transactions Table (POS Transaction Log)
 CREATE TABLE public.transactions (
-    id TEXT PRIMARY KEY, -- Unique ID provided by the POS client
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY, -- Client-provided or auto-generated UUID
     business_id TEXT NOT NULL REFERENCES public.businesses(business_id) ON DELETE CASCADE,
     device_id TEXT NOT NULL,
     amount NUMERIC(12, 2) NOT NULL CHECK (amount >= 0),

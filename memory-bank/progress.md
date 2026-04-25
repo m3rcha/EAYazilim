@@ -38,9 +38,9 @@
   - Adjusted `vercel.json` CORS to allow `*` to ensure local `file:///` demo testing functions correctly.
 - Phase 14 (Transaction Integrity):
   - Removed time-based duplicate detection (60s window).
-  - Re-purposed existing `id` column in `transactions` table from `UUID` to `TEXT`.
-  - Implemented mandatory `id` field for `POST /api/transaction` to act as the client-side unique identifier.
-  - Updated `demo-pos.html` to generate unique `id` values for testing.
+  - Enforced use of **UUID** for the `id` column in the `transactions` table.
+  - Implemented strict UUID validation in `POST /api/transaction` via Zod (`z.string().uuid()`).
+  - Updated `demo-pos.html` to generate valid UUIDs for testing using `crypto.randomUUID()`.
 
 ## What's Left to Build
 - Implement email automation for "Send Monthly Statement" feature (Resend or Mailgun).
