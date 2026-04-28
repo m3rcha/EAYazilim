@@ -1,5 +1,4 @@
-admin-panel/
-pos-api/
-pos-dashboard/
+node_modules/
 env.js
-on-development/
+.DS_Store
+dist/
