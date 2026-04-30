@@ -5,12 +5,15 @@
   "scripts": {
     "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "build": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --minify",
-    "start": "echo \"Static site - serve dist/ or root directory with any static server\""
+    "start": "npx serve -l $PORT ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.4",
     "autoprefixer": "^10.5.0",
