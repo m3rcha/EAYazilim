@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiyatlandırma — EA Yazılım | POS & Web Sitesi Paketleri</title>
+    <link rel="icon" type="image/svg+xml" href="./logo-square.svg">
+    <meta name="description" content="Şeffaf fiyatlandırma. POS sistemi 900₺/ay'den başlayan fiyatlarla. Anahtar teslim web sitesi paketleri.">
+    <link rel="stylesheet" href="./src/output.css">
+    <script src="./env.js"></script>
+</head>
+
+<body class="bg-white text-gray-900 antialiased selection:bg-blue-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Header -->
+    <header class="w-full bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center group">
+                <img src="./logo-horizontal.svg" alt="EA Yazılım" style="height: 36px; width: auto;">
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="cozumler.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Çözümler</a>
+                <a href="fiyatlandirma.html" class="text-sm font-semibold text-gray-900 transition-colors">Fiyatlandırma</a>
+                <a href="hakkimizda.html" class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Hakkımızda</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="iletisim.html" class="hidden sm:inline-flex items-center justify-center px-6 py-2.5 text-sm font-medium text-white bg-gray-900 rounded-full hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200">İletişime Geç</a>
+                <button id="menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Menüyü aç">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-y-0 right-0 w-80 max-w-full bg-white z-[60] shadow-2xl p-6">
+        <div class="flex justify-between items-center mb-8">
+            <img src="./logo-horizontal.svg" alt="EA Yazılım" style="height: 32px; width: auto;">
+            <button id="menu-close" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Menüyü kapat">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <nav class="flex flex-col gap-2">
+            <a href="cozumler.html" class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors">Çözümler</a>
+            <a href="fiyatlandirma.html" class="px-4 py-3 rounded-xl text-base font-semibold text-blue-600 bg-blue-50">Fiyatlandırma</a>
+            <a href="hakkimizda.html" class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors">Hakkımızda</a>
+            <a href="iletisim.html" class="px-4 py-3 rounded-xl text-base font-medium text-gray-700 hover:bg-gray-50 transition-colors">İletişim</a>
+        </nav>
+    </div>
+    <div id="mobile-overlay" class="fixed inset-0 bg-black/20 z-[55] hidden"></div>
+
+    <main class="flex-grow">
+
+        <!-- Hero -->
+        <section class="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gray-50 border-b border-gray-100">
+            <div class="max-w-7xl mx-auto px-6 text-center reveal">
+                <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-6">Sade ve <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">Şeffaf</span> Fiyatlandırma</h1>
+                <p class="text-lg text-gray-500 font-medium max-w-2xl mx-auto">Gizli ücret yok. İhtiyacınıza göre şekillenen esnek çözümler.</p>
+            </div>
+        </section>
+
+        <!-- POS Fiyatlandırma -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-4">POS Sistemi Fiyatlandırma</h2>
+
+                    <!-- Toggle -->
+                    <div id="pricing-toggle" class="inline-flex items-center mt-6 bg-gray-100 rounded-full p-1 border border-gray-200 cursor-pointer user-select-none">
+                        <span id="toggle-monthly" class="px-6 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 shadow-sm transition-all duration-300">Aylık</span>
+                        <span id="toggle-annual" class="px-6 py-2 rounded-full text-sm font-medium text-gray-500 transition-all duration-300">Yıllık</span>
+                    </div>
+                    <div class="mt-3">
+                        <span id="savings-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold text-green-700 bg-green-50 border border-green-200 opacity-0 transition-opacity duration-300">2 ay ücretsiz</span>
+                    </div>
+                </div>
+
+                <!-- Base Card -->
+                <div class="max-w-2xl mx-auto mb-16 reveal reveal-delay-1">
+                    <div class="bg-white rounded-3xl p-8 md:p-10 shadow-lg border-2 border-blue-500 relative hover:shadow-2xl hover:shadow-blue-900/10 transition-all duration-300">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-md uppercase">Başlangıç Paketi</div>
+                        <div class="mb-8 mt-4 text-center">
+                            <div class="flex items-end justify-center gap-1 mb-1">
+                                <span class="text-5xl font-extrabold text-gray-900 price-amount" data-annual="9.000₺" data-monthly="900₺">900₺</span>
+                                <span class="text-gray-500 font-medium pb-1 price-period">/aylık</span>
+                            </div>
+                            <p class="text-sm text-gray-400 font-medium">+ KDV</p>
+                        </div>
+                        <div class="mb-8">
+                            <p class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-6">Başlangıç Paketi İçeriği</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Sınırsız Sipariş İşleme</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Sipariş Yönetimi</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">1 Kasa</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">İşletme Paneli (Temel)</span></li>
+                                </ul>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Yedekleme ve Senkronizasyon</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Canlı Destek</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Online Kurulum Desteği</span></li>
+                                    <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 font-medium text-sm">Otomatik Yazılım Güncellemeleri</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add-ons -->
+                <div class="text-center mb-10 reveal">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">İsteğe Bağlı Ek Modüller</h3>
+                    <p class="text-gray-500 font-medium">İşletmenizin ihtiyaçlarına göre özelleştirin. Detaylı bilgi için iletişime geçin.</p>
+                </div>
+
+                <div class="max-w-5xl mx-auto mb-12 overflow-hidden reveal" style="mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);">
+                    <div class="flex gap-4" style="width: max-content; animation: marquee 30s linear infinite;">
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Ek Kasa</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Garson Mobil Uygulaması</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Mutfak Ekranı</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Stok ve Maliyet</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Gelişmiş Panel</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">AI Rapor Analizi</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">QR Menü</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Şube Yönetimi</span></div>
+                        <!-- Duplicate -->
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Ek Kasa</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Garson Mobil Uygulaması</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Mutfak Ekranı</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Stok ve Maliyet</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Gelişmiş Panel</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">AI Rapor Analizi</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">QR Menü</span></div>
+                        <div class="bg-white rounded-2xl p-4 border border-gray-100 shadow-sm flex flex-col items-center justify-center text-center w-44 shrink-0 min-h-[80px]"><svg class="w-5 h-5 text-blue-500 mb-2 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><span class="text-sm font-semibold text-gray-800 leading-tight">Şube Yönetimi</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Web Sitesi Fiyatlandırma -->
+        <section class="py-24 bg-gray-50 border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16 reveal">
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 mb-4">Web Sitesi Paketleri</h2>
+                    <p class="text-lg text-gray-500 font-medium">Anahtar teslim web sitesi çözümleri.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Kurumsal -->
+                    <div class="reveal bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover-lift">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Kurumsal</h3>
+                        <p class="text-gray-500 text-sm mb-6">Küçük işletmeler ve startup'lar için.</p>
+                        <div class="mb-6"><span class="text-3xl font-extrabold text-gray-900">₺15.000</span><span class="text-gray-400 text-sm font-medium"> 'den başlayan</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">5 sayfaya kadar</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Mobil uyumlu tasarım</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">SEO optimizasyonu</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">İletişim formu</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">1 yıllık hosting + SSL</span></li>
+                        </ul>
+                        <a href="iletisim.html" class="block w-full py-3 text-center text-sm font-semibold text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-colors">Teklif Alın</a>
+                    </div>
+                    <!-- Profesyonel -->
+                    <div class="reveal reveal-delay-1 bg-white rounded-3xl p-8 border-2 border-blue-500 shadow-lg relative hover-lift">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase">En Popüler</div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 mt-4">Profesyonel</h3>
+                        <p class="text-gray-500 text-sm mb-6">Büyüyen işletmeler için.</p>
+                        <div class="mb-6"><span class="text-3xl font-extrabold text-gray-900">₺30.000</span><span class="text-gray-400 text-sm font-medium"> 'den başlayan</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">15 sayfaya kadar</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">İçerik yönetim paneli</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Blog altyapısı</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Google Analytics entegrasyonu</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">1 yıllık hosting + SSL + destek</span></li>
+                        </ul>
+                        <a href="iletisim.html" class="block w-full py-3 text-center text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-xl hover:shadow-lg transition-all">Teklif Alın</a>
+                    </div>
+                    <!-- E-Ticaret -->
+                    <div class="reveal reveal-delay-2 bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover-lift">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">E-Ticaret</h3>
+                        <p class="text-gray-500 text-sm mb-6">Online satış yapmak isteyenler için.</p>
+                        <div class="mb-6"><span class="text-3xl font-extrabold text-gray-900">₺50.000</span><span class="text-gray-400 text-sm font-medium"> 'den başlayan</span></div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Sınırsız ürün</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Sepet & ödeme sistemi</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Kargo entegrasyonu</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">Gelişmiş raporlama</span></li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg><span class="text-gray-700 text-sm">1 yıllık hosting + SSL + destek</span></li>
+                        </ul>
+                        <a href="iletisim.html" class="block w-full py-3 text-center text-sm font-semibold text-blue-600 border border-blue-200 rounded-xl hover:bg-blue-50 transition-colors">Teklif Alın</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-24 bg-white border-t border-gray-100">
+            <div class="max-w-4xl mx-auto px-6 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 mb-6">Size Özel Teklif Alın</h2>
+                <p class="text-lg text-gray-500 font-medium mb-10">İhtiyaçlarınızı birlikte değerlendirelim. Bütçenize uygun çözüm sunalım.</p>
+                <a href="iletisim.html" class="px-8 py-4 text-base font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-full shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 hover:-translate-y-1 transition-all duration-300">Ücretsiz Teklif Alın</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8 border-t border-gray-800 mt-auto">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="md:col-span-1">
+                    <div class="mb-6 opacity-90 hover:opacity-100 transition-opacity">
+                        <img src="./logo-horizontal.svg" alt="EA Yazılım" style="height: 32px; width: auto; filter: brightness(0) invert(1);">
+                    </div>
+                    <p class="text-sm text-gray-400 font-medium leading-relaxed mb-6">POS sistemlerinden web tasarımına, dijital dönüşüm çözümleri sunan yazılım şirketi.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 tracking-wide">Çözümler</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="cozumler.html#pos" class="hover:text-white transition-colors">POS Sistemi</a></li>
+                        <li><a href="cozumler.html#kds" class="hover:text-white transition-colors">KDS Mutfak Ekranı</a></li>
+                        <li><a href="web-sitesi.html" class="hover:text-white transition-colors">Web Sitesi</a></li>
+                        <li><a href="cozumler.html#dashboard" class="hover:text-white transition-colors">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 tracking-wide">Şirket</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="hakkimizda.html" class="hover:text-white transition-colors">Hakkımızda</a></li>
+                        <li><a href="fiyatlandirma.html" class="hover:text-white transition-colors">Fiyatlandırma</a></li>
+                        <li><a href="iletisim.html" class="hover:text-white transition-colors">İletişim</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6 tracking-wide">Yasal</h4>
+                    <ul class="space-y-4 text-sm font-medium">
+                        <li><a href="kullanim-kosullari.html" class="hover:text-white transition-colors">Kullanım Koşulları</a></li>
+                        <li><a href="gizlilik-politikasi.html" class="hover:text-white transition-colors">Gizlilik Politikası</a></li>
+                        <li><a href="kvkk-aydinlatma-metni.html" class="hover:text-white transition-colors">KVKK Aydınlatma Metni</a></li>
+                        <li><a href="iade-politikasi.html" class="hover:text-white transition-colors">İade Politikası</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-gray-500">
+                <div>&copy; 2026 EA Yazılım A.Ş. Tüm hakları saklıdır.</div>
+                <div>Türkiye'de sevgiyle geliştirildi</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/905415547547" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group flex items-center justify-center">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 21.033h-.006c-1.637 0-3.238-.432-4.664-1.252l-5.184 1.36 1.386-5.061-.005-.008a9.833 9.833 0 01-1.34-4.99C2.218 5.612 6.612 1.218 12.03 1.218 17.447 1.218 21.84 5.612 21.84 11.03c0 5.417-4.393 9.811-9.81 10.003m0-18.066c-4.444 0-8.06 3.615-8.06 8.06 0 1.422.373 2.812 1.082 4.032l-.902 3.292 3.364-.882a8.032 8.032 0 003.882.996h.005c4.444 0 8.06-3.615 8.06-8.06 0-4.445-3.616-8.06-8.06-8.06m4.442 10.99c-.244-.122-1.442-.71-1.666-.79-.225-.083-.39-.123-.553.122-.164.246-.628.79-.77 952-.144.163-.288.183-.532.062-.244-.122-1.028-.378-1.958-1.206-.723-.645-1.21-1.44-1.353-1.685-.143-.244-.015-.378.107-.5.109-.109.244-.286.366-.43.123-.142.164-.244.246-.407.081-.164.041-.307-.02-.43-.06-.122-.553-1.334-.757-1.826-.2-.482-.403-.416-.552-.424-.143-.008-.308-.01-.472-.01-.164 0-.43.06-.654.305-.224.245-.858.838-.858 2.043s.88 2.366 1.002 2.53c.123.164 1.725 2.632 4.18 3.692.583.25 1.038.4 1.393.512.586.185 1.118.16 1.54.097.47-.07 1.443-.59 1.646-1.16.204-.57.204-1.057.143-1.16-.06-.102-.224-.163-.468-.285"/></svg>
+        <span class="max-w-0 overflow-hidden whitespace-nowrap opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-3 transition-all duration-500 ease-in-out font-bold text-sm">Bizimle İletişime Geçin</span>
+    </a>
+
+    <script type="module" src="./src/form-handler.js"></script>
+    <script src="./src/app.js"></script>
+</body>
+
+</html>
